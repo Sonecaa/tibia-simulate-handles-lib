@@ -1,4 +1,9 @@
+# C:\Users\NextPress\.windows-build-tools\python27\Scripts>pip install pynput
+
 import pyautogui, sys
+
+
+pyautogui.displayMousePosition()
 
 screenWidth, screenHeight = pyautogui.size() # Returns two integers, the width and height of the screen. (The primary monitor, in multi-monitor setups.)
 
@@ -8,8 +13,6 @@ currentMouseX, currentMouseY = pyautogui.position() # Retursn two integes, the x
 #pyautogui.moveTo(1000, 1500) # Move the mouse to the x, y coordinates 100, 150.
 #pyautogui.moveTo(500, 650) # Move the mouse to the x, y coordinates 100, 150.
 #pyautogui.moveTo(800, 350) # Move the mouse to the x, y coordinates 100, 150.
-
-print(screenWidth)
 
 
 #pyautogui.alert('Finish Script')

@@ -1,42 +1,29 @@
-import pyautogui, sys, time
+from pynput import mouse
+import pyautogui, sys, time 
 
-current_position = pyautogui.position()
+def start(x, y):
+  ##duration = pyautogui.prompt('Write duration float example: duration and press OK.')
+  #duration = float(duration)
+  duration = 0.04
+  pixel_tibia = 36
 
-print(current_position)
+  while True:
+    pyautogui.dragTo(x, y + pixel_tibia) #south center
+    time.sleep(duration)
+    pyautogui.dragTo(x - pixel_tibia, y + pixel_tibia) #south west
+    time.sleep(duration)
+    pyautogui.dragTo(x - pixel_tibia, y) #center west
+    time.sleep(duration)
+    pyautogui.dragTo(x - pixel_tibia, y - pixel_tibia) #north west
+    time.sleep(duration)
+    pyautogui.dragTo(x, y - pixel_tibia) #north center
+    time.sleep(duration)
+    pyautogui.dragTo(x + pixel_tibia, y - pixel_tibia) #north east
+    time.sleep(duration)
+    pyautogui.dragTo(x + pixel_tibia, y) #center east
+    time.sleep(duration)
+    pyautogui.dragTo(x + pixel_tibia, y + pixel_tibia) #south east
+    time.sleep(duration)
 
+start(595, 295)
 
-#Point(x=320, y=265)
-
-
-#    #229    #
-#    #265    #
-#    #301    #
-
-#    #    #
-#284    #320    #356
-#    #    #
-
-var = pyautogui.prompt('Write duration float example: var and press OK.')
-var = float(var)
-try:
-    while True:
-#pyautogui.dragTo(320, 265)
-      pyautogui.dragTo(320, 301) #south center
-      time.sleep(var)
-      pyautogui.dragTo(284, 301) #south west
-      time.sleep(var)
-      pyautogui.dragTo(284, 265) #center west
-      time.sleep(var)
-      pyautogui.dragTo(284, 229) #north west
-      time.sleep(var)
-      pyautogui.dragTo(320, 229) #north center
-      time.sleep(var)
-      pyautogui.dragTo(356, 229) #north east
-      time.sleep(var)
-      pyautogui.dragTo(356, 265) #center east
-      time.sleep(var)
-      pyautogui.dragTo(356, 301) #south east
-      time.sleep(var)
-      #pyautogui.dragTo(320, 301) #south center
-except KeyboardInterrupt:
-  print('lol')
