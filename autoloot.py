@@ -1,10 +1,9 @@
-from pynput import mouse
 import pyautogui, sys, time 
 
 def start(x, y):
   ##duration = pyautogui.prompt('Write duration float example: duration and press OK.')
   #duration = float(duration)
-  duration = 0.04
+  duration = 0.03
   pixel_tibia = 36
 
   while True:
@@ -25,5 +24,5 @@ def start(x, y):
     pyautogui.dragTo(x + pixel_tibia, y + pixel_tibia) #south east
     time.sleep(duration)
 
-start(595, 295)
+
 
