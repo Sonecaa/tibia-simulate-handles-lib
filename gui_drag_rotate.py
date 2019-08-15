@@ -1,9 +1,10 @@
 from constants import *
-from autoloot import *
+from drag_rotate import *
 import PySimpleGUI27 as sg
-import pyautogui, sys, time, mouse
+import pyautogui, sys, time, mouse, keyboard
 
 current_position = ''
+
 
 # ------ Menu Definition ------ #
 menu_def = [['&Options', ['&1', '&2', '3', '4']],
@@ -16,7 +17,7 @@ layout = [[sg.Menu(menu_def, tearoff=True)],
           [sg.Input(do_not_clear=True, key='_IN_')],
           [sg.Button('Confirm', key='Confirm', disabled=True), sg.Exit()]]
           
-window = sg.Window(title_program, layout, auto_size_buttons=False, keep_on_top=True, grab_anywhere=True)
+window = sg.Window(title_program, layout, auto_size_buttons=False, keep_on_top=True, grab_anywhere=True, return_keyboard_events=True)
 
 def get_current_position():
     position_x, position_y = mouse.get_position()
