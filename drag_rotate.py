@@ -1,4 +1,17 @@
 import pyautogui, sys, time, mouse, keyboard
+from constants import *
+from functions import *
+
+
+def start_array_positions(array, duration):
+
+  for position_string in array:
+    x, y = array_string_to_position_obj(str(position_string))
+    time.sleep(duration)
+    try:
+      pyautogui.dragTo(x, y)
+    except KeyboardInterrupt:
+      print('END PROGRAM')
 
 def start(x, y):
   ##duration = pyautogui.prompt('Write duration float example: duration and press OK.')
