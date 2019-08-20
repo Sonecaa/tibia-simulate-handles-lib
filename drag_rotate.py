@@ -3,15 +3,22 @@ from constants import *
 from functions import *
 
 
-def start_array_positions(array, duration):
+def start_array_positions(array, duration, loop):
 
-  for position_string in array:
-    x, y = array_string_to_position_obj(str(position_string))
-    time.sleep(duration)
-    try:
+  if(loop == 0):
+    loop = 9999
+
+  i = 0
+  while True:
+    for position_string in array:
+      x, y = array_string_to_position_obj(str(position_string))
+      time.sleep(duration)
+
       pyautogui.dragTo(x, y)
-    except KeyboardInterrupt:
-      print('END PROGRAM')
+
+    i = i + 1
+    if(i == loop):  
+        break
 
 def start(x, y):
   ##duration = pyautogui.prompt('Write duration float example: duration and press OK.')

@@ -22,12 +22,17 @@ layout = [[sg.Menu(menu_def, tearoff=True)],
           [sg.Button('South West', key='d_SW', size=('4','2'), disabled=True), sg.Button('South', key='d_S', size=('4','2'), disabled=True), sg.Button('South East', key='d_SE', size=('4','2'), disabled=True)],
           [sg.Button('Clear', key='Clear', button_color=('#FF333D', 'white'))],
           [sg.Listbox(key='Records', values=[], size=(30, 6))],
+          [sg.Text('Repeat times: '), sg.Spin(key='Loop', values=[i for i in range(0,10)], size=(17, 6), initial_value=0)],
+          [sg.Text('Note: 0 is infinite loop', font='Courier 8')],
           [sg.Button('Start', key='Start', disabled=True), sg.Button('Default', key='Default', disabled=True), sg.Exit()]]
 
 window = sg.Window(title_program, layout, auto_size_buttons=False, keep_on_top=True, grab_anywhere=True, return_keyboard_events=True)
 
 def get_records():
   return window.Element('Records').GetListValues()
+
+def get_repeats():
+  return int(window.Element('Loop').Get())
 
 def clear_records():
   window.Element('Records').Update(values=[])
@@ -90,7 +95,7 @@ while True:
     if 'd_' in event:
       handle_direction_buttons(event)
     if event == 'Start':
-      start_array_positions(get_records(), 0.05)
+      start_array_positions(get_records(), 0.05, get_repeats())
     if event == 'Default':
       position = window.Element('_IN_').Get().split(',')
       start( int(position[0]), int(position[1]) )
@@ -98,7 +103,6 @@ while True:
       mouse.on_click(get_current_position)
     if event == 'Clear':
       clear_records()
-      print(get_records())
     if event is None or event == 'Exit':
       print('END PROGRAM')
       break
