@@ -7,26 +7,29 @@ from drag_rotate import *
 current_position = ''
 
 
-# ------ Menu Definition ------ #
-menu_def = [['&Options', ['&1', '&2', '3', '4']],
-            ['&Help', '&About...'], ]
-
-sg.ChangeLookAndFeel('Black')
-layout = [[sg.Menu(menu_def, tearoff=True)],
-          [sg.Text('Click to select position of your character')],
-          [sg.Button('Select', key='Select')],
+tab1_layout =  [[sg.T('Healing')]]
+tab2_layout = [
+          [sg.Text('Click to select position of your character', background_color="#333", text_color="#fff")  ],
+          [sg.Button('Select', key='Select', button_color=('#000', '#fff'))],
           [sg.Input(do_not_clear=True, key='_IN_')],
-          [sg.Text('Select directions')],
+          [sg.Text('Select directions', background_color="#333", text_color="#fff")],
           [sg.Button('North West', key='d_NW', size=('4','2'), disabled=True), sg.Button('North', key='d_N', size=('4','2'), disabled=True), sg.Button('North East', key='d_NE', size=('4','2'), disabled=True)],
           [sg.Button('Center West', key='d_CW', size=('4','2'), disabled=True), sg.Button('Center', key='d_C', size=('4','2'), disabled=True), sg.Button('Center East', key='d_CE', size=('4','2'), disabled=True)],
           [sg.Button('South West', key='d_SW', size=('4','2'), disabled=True), sg.Button('South', key='d_S', size=('4','2'), disabled=True), sg.Button('South East', key='d_SE', size=('4','2'), disabled=True)],
           [sg.Button('Clear', key='Clear', button_color=('#FF333D', 'white'))],
           [sg.Listbox(key='Records', values=[], size=(30, 6))],
-          [sg.Text('Repeat times: '), sg.Spin(key='Loop', values=[i for i in range(0,10)], size=(17, 6), initial_value=0)],
-          [sg.Text('Note: 0 is infinite loop', font='Courier 8')],
-          [sg.Button('Start', key='Start', disabled=True), sg.Button('Default', key='Default', disabled=True), sg.Exit()]]
+          [sg.Text('Repeat times: ', background_color="#333", text_color="#fff"), sg.Spin(key='Loop', values=[i for i in range(0,10)], size=(17, 6), initial_value=0)],
+          [sg.Text('Note: 0 is infinite loop', font='Courier 8', background_color="#333", text_color="#fff")],
+          [sg.Button('Start', key='Start', disabled=True, button_color=('#000', '#fff')), sg.Button('Default', key='Default', disabled=True, button_color=('#000', '#fff')), sg.Exit(button_color=('#000', '#fff'))]
+          ]
 
-window = sg.Window(title_program, layout, auto_size_buttons=False, keep_on_top=True, grab_anywhere=True, return_keyboard_events=True)
+
+
+layout = [
+          [sg.TabGroup([[sg.Tab('Healing', tab1_layout, background_color="#333", title_color="#333" ), sg.Tab('Drag and Drop', tab2_layout, background_color="#333", title_color="#333")]], background_color="#333")],
+         ]
+
+window = sg.Window(title_program, layout, auto_size_buttons=False, keep_on_top=True, grab_anywhere=True, return_keyboard_events=True, margins=(1,1), background_color="#333")
 
 def get_records():
   return window.Element('Records').GetListValues()
