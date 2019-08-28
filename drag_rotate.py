@@ -42,6 +42,7 @@ class DragRotate:
     self.window.Element('btn_Default').Update(disabled=False)
     self.window.Element('btn_Start').Update(disabled=False)
     self.enable_buttons_directions()
+    self.clear_records()
 
     mouse.unhook_all()
 

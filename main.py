@@ -20,6 +20,7 @@ tab1_layout =  [
                 [sg.T('Healing')],
                 [sg.Button('Select area', key='btn_sa', button_color=('#000', '#fff'))],
                 [sg.Button('Screenshot Life', key='btn_ss_life', button_color=('#000', '#fff'))],
+                [sg.Button('Get locate mana', key='xxxxx', button_color=('#000', '#fff'))],
                 ]
 
 tab2_layout = [
@@ -48,15 +49,13 @@ drag_rotate = DragRotate(window)
 healing = Healing(window)
 
 def image_follow_mouse():
-  print(win32gui.GetCursor)
+  
   while mouse.is_pressed():
     print(mouse.get_position())
     print(mouse.is_pressed())
     if not mouse.is_pressed():
-      break
       mouse.unhook_all()
-
-
+      break
 
 while True:
     event, values = window.Read()
@@ -72,6 +71,8 @@ while True:
       mouse.on_click(drag_rotate.get_current_position)
     if event == 'btn_Clear':
       drag_rotate.clear_records()
+    if event == 'xxxxx':
+      print(healing.get_mana())
     if event == 'btn_ss_life':
       healing.screenshot_life()
     if event == 'btn_sa':
