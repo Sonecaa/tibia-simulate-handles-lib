@@ -35,7 +35,7 @@ tab2_layout = [
           [sg.Listbox(key='Records', values=[], size=(30, 6))],
           [sg.Text('Repeat times: ', background_color="#333", text_color="#fff"), sg.Spin(key='Loop', values=[i for i in range(0,10)], size=(17, 6), initial_value=0)],
           [sg.Text('Note: 0 is infinite loop', font='Courier 8', background_color="#333", text_color="#fff")],
-          [sg.Button('Start', key='btn_Start', disabled=True, button_color=('#000', '#fff')), sg.Button('Default', key='btn_Default', disabled=True, button_color=('#000', '#fff')), sg.Exit(button_color=('#000', '#fff'))]
+          [sg.Button('Start', key='btn_Start', disabled=True, button_color=('#000', '#fff')), sg.Button('Random', key='btn_Random', disabled=True, button_color=('#000', '#fff')), sg.Exit(button_color=('#000', '#fff'))]
           ]
 
 layout = [
@@ -60,13 +60,15 @@ def image_follow_mouse():
 while True:
     event, values = window.Read()
 
+    #healing.heal_health(80, 'exura', 1)
+
     if not event == 'NoneType' and 'd_' in event:
       drag_rotate.handle_direction_buttons(event)
     if event == 'btn_Start':
       drag_rotate.start_array_positions(drag_rotate.get_records(), 0.05, drag_rotate.get_repeats())
-    if event == 'btn_Default':
-      position = window.Element('_IN_').Get().split(',')
-      drag_rotate.start( int(position[0]), int(position[1]) )
+    if event == 'btn_Random':
+      drag_rotate.get_random_positions()
+      #drag_rotate.start_array_positions(drag_rotate.get_records(), 0.05, drag_rotate.get_repeats())
     if event == 'btn_Select':
       mouse.on_click(drag_rotate.get_current_position)
     if event == 'btn_Clear':

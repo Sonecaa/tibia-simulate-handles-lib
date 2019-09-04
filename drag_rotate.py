@@ -1,6 +1,8 @@
 import pyautogui, sys, time, mouse, keyboard
 from constants import *
 from functions import *
+from random import randrange
+
 
 class DragRotate:
 
@@ -39,7 +41,7 @@ class DragRotate:
     position_x, position_y = mouse.get_position()
     self.window.Element('_IN_').Update(str(position_x) + ',' + str(position_y))
 
-    self.window.Element('btn_Default').Update(disabled=False)
+    self.window.Element('btn_Random').Update(disabled=False)
     self.window.Element('btn_Start').Update(disabled=False)
     self.enable_buttons_directions()
     self.clear_records()
@@ -48,7 +50,7 @@ class DragRotate:
 
   def handle_direction_buttons(self, event):
     position = self.window.Element('_IN_').Get().split(',')
-    pixel_tibia = 36
+    pixel_tibia = 32
     x = int(position[0])
     y = int(position[1])
 
@@ -88,33 +90,28 @@ class DragRotate:
       if(i == loop):  
           break
 
-  def start(self, x, y):
-    ##duration = pyautogui.prompt('Write duration float example: duration and press OK.')
-    #duration = float(duration)
-    duration = 0.03
-    pixel_tibia = 36
+  def get_random_positions(self):
+    num_random = randrange(0,8)
 
-    while True:
-      try:
-        pyautogui.dragTo(x, y + pixel_tibia) #south center
-        time.sleep(duration)
-        pyautogui.dragTo(x - pixel_tibia, y + pixel_tibia) #south west
-        time.sleep(duration)
-        pyautogui.dragTo(x - pixel_tibia, y) #center west
-        time.sleep(duration)
-        pyautogui.dragTo(x - pixel_tibia, y - pixel_tibia) #north west
-        time.sleep(duration)
-        pyautogui.dragTo(x, y - pixel_tibia) #north center
-        time.sleep(duration)
-        pyautogui.dragTo(x + pixel_tibia, y - pixel_tibia) #north east
-        time.sleep(duration)
-        pyautogui.dragTo(x + pixel_tibia, y) #center east
-        time.sleep(duration)
-        pyautogui.dragTo(x + pixel_tibia, y + pixel_tibia) #south east
-        time.sleep(duration)
+    if num_random == 0:
+      self.handle_direction_buttons('d_NW')
+    if num_random == 1:
+      self.handle_direction_buttons('d_N')
+    if num_random == 2:
+      self.handle_direction_buttons('d_NE')
+    if num_random == 3:
+      self.handle_direction_buttons('d_CW')
+    if num_random == 4:
+      self.handle_direction_buttons('d_C')
+    if num_random == 5:
+      self.handle_direction_buttons('d_CE')
+    if num_random == 6:
+      self.handle_direction_buttons('d_SW')
+    if num_random == 7:
+      self.handle_direction_buttons('d_S')
+    if num_random == 8:
+      self.handle_direction_buttons('d_SE')
 
-        if keyboard.is_pressed == True:
-          print('END PROGRAM')
-          break
-      except KeyboardInterrupt:
-        print('END PROGRAM')
+
+
+
