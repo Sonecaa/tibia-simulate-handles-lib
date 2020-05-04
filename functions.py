@@ -1,3 +1,6 @@
+from PIL import ImageGrab
+import pyautogui, sys, time, mouse, keyboard
+
 def position_to_array_string(x,y):
   return [str(x) + ',' + str(y)]
 

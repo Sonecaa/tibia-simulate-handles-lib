@@ -17,6 +17,9 @@ class DragRotate:
   def get_repeats(self):
     return int(self.window.Element('Loop').Get())
 
+  def get_speed(self):
+    return float(self.window.Element('Speed').Get()) 
+
   def clear_records(self):
     self.window.Element('Records').Update(values=[])
 
