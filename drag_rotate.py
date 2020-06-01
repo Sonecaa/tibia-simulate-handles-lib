@@ -40,17 +40,6 @@ class DragRotate:
     self.window.Element('d_S').Update(disabled=False)
     self.window.Element('d_SE').Update(disabled=False)
 
-  def get_current_position(self):
-    position_x, position_y = mouse.get_position()
-    self.window.Element('_IN_').Update(str(position_x) + ',' + str(position_y))
-
-    self.window.Element('btn_Random').Update(disabled=False)
-    self.window.Element('btn_Start').Update(disabled=False)
-    self.enable_buttons_directions()
-    self.clear_records()
-
-    mouse.unhook_all()
-
   def handle_direction_buttons(self, event):
     position = self.window.Element('_IN_').Get().split(',')
     pixel_tibia = 32
